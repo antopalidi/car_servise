@@ -1,4 +1,11 @@
 <div>
   <h1 class="font-bold text-4xl">Home#index</h1>
   <p>Find me in app/views/home/index.html.erb</p>
+
+  <div class="links mt-4 d-flex flex-column col-md-4 col-sm-12">
+    <%= link_to 'Categories', categories_path, class: 'rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer' %>
+    <%= link_to 'Jobs', jobs_path, class: 'rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer' %>
+    <%= link_to 'Workers', workers_path, class: 'rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer' %>
+    <%= link_to 'Orders', orders_path, class: 'rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer' %>
+  </div>
 </div>
