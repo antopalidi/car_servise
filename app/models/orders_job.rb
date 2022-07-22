@@ -1,0 +1,2 @@
+class OrdersJob < ApplicationRecord
+end
