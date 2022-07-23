@@ -1,6 +1,6 @@
 <%= turbo_frame_tag order do %>
   <div class="table min-w-full">
-    <div><%= link_to "Order #{order.id}", order %></div>
+    <div><%= link_to order.order_number, order %></div>
     <div><%= l order.created_at, format: :short %></div>
     <div><%= link_to order.worker.name, worker_path(order.worker) %></div>
     <div><%= order.client_phone %></div>

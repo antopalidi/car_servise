@@ -1,10 +1,12 @@
-<%= form_with model: order, id: dom_id(order, "form"), class: " flex justify-between items-top bg-gray-200 p-4 mx-auto
+<%= form_with model: order, id: dom_id(order, "form"), class: "text-gray-600 flex justify-between items-top
+bg-gray-200 p-4 mx-auto
 min-w-full" do |form| %>
   <div class="flex">
     <div class="mr-12">
       <div class="">
         <%= form.label :order_number, class: 'text-xs' %>
-        <%= form.text_field :order_number, class: "block rounded-md border border-gray-200 outline-none px-3 py-2  w-full" %>
+        <%= form.text_field :order_number, readonly: true, value: order_num,
+                            class: "block rounded-md border border-gray-200 outline-none px-3 py-2  w-full" %>
       </div>
 
       <%= form.label :worker, class: 'text-xs' %>
