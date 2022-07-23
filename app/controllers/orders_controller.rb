@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
       flash.now[:notice] = "Order was successfully created."
       render turbo_stream: [
-        turbo_stream.prepend("orders", @order),
+        turbo_stream.append("orders", @order),
         turbo_stream.replace(
           "form_order",
           partial: "form",

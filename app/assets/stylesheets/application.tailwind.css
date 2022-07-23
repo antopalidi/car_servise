@@ -27,3 +27,6 @@ turbo-frame:nth-child(even) .table {
 .table-header.table {
   margin-top: 30px;
 }
+.container {
+  background-color: #f4f4f4;
+}
