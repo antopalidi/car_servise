@@ -4,6 +4,27 @@
   </div>
   <div class="min-w-full my-8">
     <%= turbo_frame_tag "new-order-form", src: new_order_path %>
+    <div class="flex flex-wrap my-4">
+      <%= link_to "In descending order", filtered_orders_path(:desc),
+                  class: "border-2 border-slate-600 hover:border-transparent mr-4 hover:bg-slate-400 focus:outline-none
+                  focus:ring-2 focus:ring-slate-400 text-slate-600
+                  focus:ring-offset-2 focus:ring-offset-slate-50 hover:text-white h-12 px-6 rounded-lg w-full
+                   flex items-center justify-center sm:w-auto dark:bg-sky-500 dark:highlight-white/20 dark:hover:bg-sky-400" %>
+      <%= link_to "In ascending order", filtered_orders_path(:asc), class: "border-2 border-slate-600 text-slate-600
+      hover:border-transparent mr-4 hover:bg-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400
+                  focus:ring-offset-2 focus:ring-offset-slate-50 hover:text-white h-12 px-6 rounded-lg w-full
+                   flex items-center justify-center sm:w-auto dark:bg-sky-500 dark:highlight-white/20 dark:hover:bg-sky-400" %>
+      <%= link_to "Sort by client Name", filtered_orders_path(:client_name), class: "border-2 border-slate-600 text-slate-600
+      hover:border-transparent mr-4 hover:bg-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400
+                  focus:ring-offset-2 focus:ring-offset-slate-50 hover:text-white h-12 px-6 rounded-lg w-full
+                   flex items-center justify-center sm:w-auto dark:bg-sky-500 dark:highlight-white/20 dark:hover:bg-sky-400" %>
+      <%= link_to 'Download xlsx', orders_path(params: request.params, format: :xlsx),
+                  target: :_blank, class: "border-2 border-slate-600 hover:border-transparent mr-4 hover:bg-slate-400
+                   focus:outline-none text-slate-600
+                  focus:ring-2 focus:ring-slate-400
+                  focus:ring-offset-2 focus:ring-offset-slate-50 hover:text-white h-12 px-6 rounded-lg w-full
+                   flex items-center justify-center sm:w-auto dark:bg-sky-500 dark:highlight-white/20 dark:hover:bg-sky-400" %>
+    </div>
     <div class="table-header table font-bold min-w-full">
       <div>Order №</div>
       <div>Datetime</div>
