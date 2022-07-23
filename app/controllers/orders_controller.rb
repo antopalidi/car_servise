@@ -23,38 +23,45 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
 
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+    if @order.save
+      flash.now[:success] = 'Order created!'
+
+      flash.now[:notice] = "Order was successfully created."
+      render turbo_stream: [
+        turbo_stream.prepend("orders", @order),
+        turbo_stream.replace(
+          "form_order",
+          partial: "form",
+          locals: { order: Order.new }
+        ),
+        turbo_stream.replace("notice", partial: "shared/flash")
+      ]
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /orders/1 or /orders/1.json
   def update
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to order_url(@order), notice: "Order was successfully updated." }
-        format.json { render :show, status: :ok, location: @order }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+    if @order.update(order_params)
+      flash.now[:notice] = "Order was successfully updated."
+      render turbo_stream: [
+        turbo_stream.replace(@order, @order),
+        turbo_stream.replace("notice", partial: "shared/flash")
+      ]
+    else
+      render :edit
     end
   end
 
   # DELETE /orders/1 or /orders/1.json
   def destroy
     @order.destroy
-
-    respond_to do |format|
-      format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    flash.now[:notice] = "Order was successfully destroyed."
+    render turbo_stream: [
+      turbo_stream.remove(@order),
+      turbo_stream.replace("notice", partial: "shared/flash")
+    ]
   end
 
   private
@@ -65,6 +72,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:order_number, :client_name, :string)
+      params.require(:order).permit(:client_name, :client_phone, :worker_id, job_ids: [])
     end
 end
