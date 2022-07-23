@@ -4,7 +4,7 @@
 
 .table {
   display: grid;
-  grid-template-columns: repeat(6, 2fr) 1fr;
+  grid-template-columns: repeat(7, 2fr) 1fr;
   column-gap: 2rem;
   align-items: center;
   padding: 1rem;

@@ -1,10 +1,12 @@
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+    <h2 class="font-bold text-blue-800 text-2xl"><%= @order.order_number %></h2>
+    <hr>
+    <div class="my-2"><span class="font-bold">Datetime: </span><%= l @order.created_at, format: :short %></div>
+    <div class="my-2"><span class="font-bold">Client name: </span><%= link_to @order.worker.name, worker_path(@order
+                                                                                                                .worker) %></div>
+    <div class="my-2" ><span class="font-bold">Phone: </span><%= @order.client_phone %></div>
 
-    <%= render @order %>
 
     <%= link_to 'Edit this order', edit_order_path(@order), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
