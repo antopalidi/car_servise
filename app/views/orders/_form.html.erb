@@ -1,6 +1,5 @@
-<%= form_with model: order, id: dom_id(order, "form"), class: "text-gray-600 flex justify-between items-top
-bg-gray-200 p-4 mx-auto
-min-w-full" do |form| %>
+<%= form_with model: order, id: dom_id(order, "form"),
+              class: "text-gray-600 flex justify-between items-top bg-gray-200 p-4 mx-auto min-w-full" do |form| %>
   <div class="flex">
     <div class="mr-12">
       <div class="">
@@ -43,8 +42,6 @@ min-w-full" do |form| %>
       </div>
     </div>
   </div>
-
-
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>

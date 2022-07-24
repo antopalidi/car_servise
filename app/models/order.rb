@@ -6,11 +6,17 @@ class Order < ApplicationRecord
   validates :client_name, presence: true
   validates :client_phone, presence: true
 
-  scope :filter_by_client, -> { order(:client_name) }
-  scope :filter_by_desc, -> { order(created_at: :desc) }
-  scope :filter_by_asc, -> { order(created_at: :asc) }
+  # scope :filter_by_client, -> { order(:client_name) }
+  # scope :filter_by_desc, -> { order(created_at: :desc) }
+  # scope :filter_by_asc, -> { order(created_at: :asc) }
 
   def unique_categories(jobs)
     jobs.map { |item| item.category.title }.uniq
+  end
+
+  def self.search(params)
+    params[:query].blank? ? all : where(
+      "client_name LIKE ?", "%#{sanitize_sql_like(params[:query])}%"
+    )
   end
 end

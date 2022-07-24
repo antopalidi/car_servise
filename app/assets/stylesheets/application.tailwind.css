@@ -30,3 +30,7 @@ turbo-frame:nth-child(even) .table {
 .container {
   background-color: #f4f4f4;
 }
+
+.input-search {
+  margin-right: -4px;
+}
