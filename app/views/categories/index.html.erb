@@ -1,7 +1,7 @@
 <div class="w-full">
   <div class="flex justify-between items-center">
     <h2 class="font-bold text-4xl mb-6">Categories</h2>
-    <%= link_to 'New job', new_category_path, data: {turbo_frame: dom_id(Category.new) },
+    <%= link_to 'New category', new_category_path, data: {turbo_frame: dom_id(Category.new) },
                 class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
   <div id="jobs" class="min-w-full my-3 bg-gray-50 p-4">
