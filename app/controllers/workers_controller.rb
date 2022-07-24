@@ -23,27 +23,19 @@ class WorkersController < ApplicationController
   def create
     @worker = Worker.new(worker_params)
 
-    respond_to do |format|
-      if @worker.save
-        format.html { redirect_to worker_url(@worker), notice: "Worker was successfully created." }
-        format.json { render :show, status: :created, location: @worker }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @worker.errors, status: :unprocessable_entity }
-      end
+    if @worker.save
+      flash.now[:success] = 'Worker created!'
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /workers/1 or /workers/1.json
   def update
-    respond_to do |format|
-      if @worker.update(worker_params)
-        format.html { redirect_to worker_url(@worker), notice: "Worker was successfully updated." }
-        format.json { render :show, status: :ok, location: @worker }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @worker.errors, status: :unprocessable_entity }
-      end
+    if @worker.update(worker_params)
+      redirect_to worker_path
+    else
+      render :edit
     end
   end
 
@@ -52,8 +44,7 @@ class WorkersController < ApplicationController
     @worker.destroy
 
     respond_to do |format|
-      format.html { redirect_to workers_url, notice: "Worker was successfully destroyed." }
-      format.json { head :no_content }
+      format.turbo_stream { flash.now[:success] = 'Worker deleted!' }
     end
   end
 
