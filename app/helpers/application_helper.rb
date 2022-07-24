@@ -8,4 +8,8 @@ module ApplicationHelper
     end
     html.join.html_safe
   end
+
+  def prepend_flash
+    turbo_stream.prepend 'flash', partial: 'shared/flash'
+  end
 end
