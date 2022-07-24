@@ -1,0 +1,3 @@
+<%= turbo_stream.update Category.new, '' %>
+<%= turbo_stream.after Category.all[-2], render(@category) %>
+<%= prepend_flash %>
