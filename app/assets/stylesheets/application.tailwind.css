@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar { width: 0;}
 .table {
   display: grid;
   grid-template-columns: repeat(7, 2fr) 1fr;
