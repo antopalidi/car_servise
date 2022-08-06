@@ -8,14 +8,14 @@
     <div>
       <ul>
         <% order.jobs.each do |job| %>
-          <span class=""><%= job.title %></span>
+          <span class="bg-gray-100 text-gray-500 p-1 mr-1 text-xs font-light"><%= job.title %></span>
         <% end %>
       </ul>
     </div>
     <div>
       <ul>
         <% order.unique_categories(order.jobs).each do |job| %>
-          <span class="d-flex flex-wrap"><%= job %></span>
+          <span class="d-flex flex-wrap text-xs text-blue-500 bg-blue-100 p-1 mx-1 font-light"><%= job %></span>
         <% end %>
       </ul>
     </div>
