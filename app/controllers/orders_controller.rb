@@ -5,26 +5,38 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
-    if params[:order] and params[:order][:worker_id]
-      @orders = Order.search_by_worker(params[:order][:worker_id])
-    elsif params[:order] and params[:order][:category_id]
-      @orders = Order.search_by_category(params[:order][:category_id])
-    else
-      @orders = Order.search_client(params)
-    end
+    respond_to do |format|
+      format.html do
+        if params[:order] and params[:order][:worker_id]
+          @orders = Order.search_by_worker(params[:order][:worker_id])
+        elsif params[:order] and params[:order][:category_id]
+          @orders = Order.search_by_category(params[:order][:category_id])
+        else
+          @orders = Order.search_client(params)
+        end
 
-    case params[:filter]
-    when 'client_name'
-      @orders = Order.filter_by_client_name
-    when 'desc'
-      @orders = Order.filter_by_desc
-    when 'asc'
-      @orders = Order.filter_by_asc
-    when "status_incomplete"
-      @orders = Order.filter_by_status_incomplete
-    when "status_complete"
-      @orders = Order.filter_by_status_complete
+        case params[:filter]
+        when 'client_name'
+          @orders = Order.filter_by_client_name
+        when 'desc'
+          @orders = Order.filter_by_desc
+        when 'asc'
+          @orders = Order.filter_by_asc
+        when "status_incomplete"
+          @orders = Order.filter_by_status_incomplete
+        when "status_complete"
+          @orders = Order.filter_by_status_complete
+        end
+      end
+
+      format.zip do
+        respond_with_zipped_orders
+      end
     end
+  end
+
+  def create_table
+    render "orders/orders_list.xlsx.axlsx"
   end
 
   # GET /orders/1 or /orders/1.json
@@ -105,5 +117,24 @@ class OrdersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def order_params
     params.require(:order).permit(:status, :client_name, :order_number, :client_phone, :worker_id, job_ids: [])
+  end
+
+  def respond_with_zipped_orders
+    compressed_filestream = Zip::OutputStream.write_buffer do |zos|
+      Order.order(created_at: :desc).each do |order|
+        zos.put_next_entry 'orders.xlsx'
+        zos.print render_to_string(
+                    layout: false,
+                    handlers: [:axlsx],
+                    formats: [:xlsx],
+                    template: 'orders/orders_list',
+                    locals: { order: order}
+                  )
+      end
+    end
+
+    compressed_filestream.rewind
+
+    send_data compressed_filestream.read, filename: 'orders.zip'
   end
 end

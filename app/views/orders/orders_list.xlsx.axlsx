@@ -1,0 +1,24 @@
+wb = xlsx_package.workbook
+
+s = wb.styles
+
+highlight_cell = s.add_style(bg_color: 'EFC376', alignment: { horizontal: :center })
+center_cell = s.add_style(border: Axlsx::STYLE_THIN_BORDER, alignment: { horizontal: :center })
+
+wb.add_worksheet(name: "Order") do |sheet|
+  sheet.add_row ['№', 'Status', 'Datetime', 'Client name', 'phone', 'Worker', 'Jobs', 'Category'],
+  style: highlight_cell
+  Order.all.each do |order|
+    sheet.add_row [
+      order.order_number,
+      order.status ? 'Incomplete' : 'Complete',
+      order.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+      order.client_name,
+      order.client_phone,
+      order.worker.name,
+      order.jobs.map { |job| job.title }.join(", "),
+      order.jobs.map {|job| job.category.title }.join(", ")
+      ], style: center_cell
+  end
+
+end

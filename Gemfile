@@ -14,6 +14,9 @@ gem "tailwindcss-rails"
 gem "jbuilder"
 gem "redis", "~> 4.0"
 gem "bootsnap", require: false
+gem 'caxlsx'
+gem 'caxlsx_rails'
+gem 'rubyzip'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
