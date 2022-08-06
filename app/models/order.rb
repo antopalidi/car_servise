@@ -26,7 +26,7 @@ class Order < ApplicationRecord
 
   def self.search_by_category(search)
     category = Category.where("id = ?", search)
-    category[0].jobs.map { |s| return s.orders }
+    category[0].jobs.map { |job| return job.orders }
   end
 
 end

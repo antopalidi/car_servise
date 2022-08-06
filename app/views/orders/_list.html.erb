@@ -8,7 +8,7 @@
   <div class="my-3 mr-4">
     <%= form_tag(orders_path, :method => 'get', class: 'flex') do %>
       <%= collection_select :order, :worker_id, Worker.all, :id, :name,
-                            { :prompt => 'Search by worker' },
+                            { :prompt => 'Select a worker' },
                             { :class => 'block shadow rounded-l-lg border border-gray-200 outline-none px-3 py-2
                             w-52' } %>
       <%= submit_tag "Show", class: "mx-0 py-2 shadow rounded-r-lg px-5 border border-gray-200 text-black-600
@@ -18,7 +18,7 @@
   <div class="my-3 mr-4">
     <%= form_tag(orders_path, :method => 'get', class: 'flex') do %>
       <%= collection_select :order, :category_id, Category.all, :id, :title,
-                            { :prompt => 'Search by Category' },
+                            { :prompt => 'Select a category' },
                             { :class => 'block shadow rounded-l-lg border border-gray-200 outline-none px-3 py-2 w-52'
                             } %>
       <%= submit_tag "Show", class: "mx-0 py-2 shadow rounded-r-lg px-5 bg-transparent border border-gray-200
