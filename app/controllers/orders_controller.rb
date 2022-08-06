@@ -6,6 +6,15 @@ class OrdersController < ApplicationController
   # GET /orders or /orders.json
   def index
     @orders = Order.search(params)
+
+    case params[:filter]
+    when 'client_name'
+      @orders = Order.filter_by_client_name
+    when 'desc'
+      @orders = Order.filter_by_desc
+    when 'asc'
+      @orders = Order.filter_by_asc
+    end
   end
 
   # GET /orders/1 or /orders/1.json
