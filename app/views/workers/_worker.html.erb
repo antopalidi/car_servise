@@ -4,19 +4,31 @@
       <%= link_to worker.name, worker_path(worker), data: {turbo_frame: '_top'}, class: 'font-semibold,
       text-yellow-600 mr-4 w-96' %>
 
-      <% if action_name != "show" %>
-        <%= link_to edit_worker_path(worker) do %>
-          <svg class="inline-block w-4 h-4" fill="none" stroke="green" viewBox="0 0 24 24" >
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-          </svg>
+      <% if worker.orders.any? %>
+        <% worker.orders.each do |order| %>
+          <div class="">
+            <div> <%= link_to order.order_number, order, data: { turbo_frame: '_top' }, class: 'text-green-600 mx-4'
+            %> | </div>
+          </div>
         <% end %>
-        <%= button_to worker_path(worker), method: :delete, form_class: "inline-block ml-4" do %>
-          <svg class="inline-block w-4 h-4" fill="none" stroke="red" viewBox="0 0 24 24" >
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-          </svg>
-        <% end %>
+      <% else %>
+        <div class="">
+          <p>No orders</p>
+        </div>
       <% end %>
     </div>
+    <% if action_name != "show" %>
+      <%= link_to edit_worker_path(worker) do %>
+        <svg class="inline-block w-4 h-4" fill="none" stroke="green" viewBox="0 0 24 24" >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+        </svg>
+      <% end %>
+      <%= button_to worker_path(worker), method: :delete, form_class: "inline-block ml-4" do %>
+        <svg class="inline-block w-4 h-4" fill="none" stroke="red" viewBox="0 0 24 24" >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+        </svg>
+      <% end %>
+    <% end %>
     <hr class="my-4">
   </div>
 <% end %>

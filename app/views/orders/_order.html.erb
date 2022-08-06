@@ -1,6 +1,6 @@
 <%= turbo_frame_tag order do %>
   <div class="table min-w-full">
-    <div><%= link_to order.order_number, order, data: { turbo_frame: '_top' } %></div>
+    <div><%= link_to order.order_number, order, data: { turbo_frame: '_top' }, class: 'text-green-600' %></div>
     <div><%= l order.created_at, format: :short %></div>
     <div><%= link_to order.client_name %></div>
     <div><%= link_to order.client_phone, "tel:#{order.client_phone}", class: 'text-blue-400' %></div>

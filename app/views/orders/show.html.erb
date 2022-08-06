@@ -3,10 +3,13 @@
     <h2 class="font-bold text-blue-800 text-2xl"><%= @order.order_number %></h2>
     <hr>
     <div class="my-2"><span class="font-bold">Datetime: </span><%= l @order.created_at, format: :short %></div>
-    <div class="my-2"><span class="font-bold">Client name: </span><%= link_to @order.worker.name, worker_path(@order
-                                                                                                                .worker) %></div>
-    <div class="my-2" ><span class="font-bold">Phone: </span><%= @order.client_phone %></div>
+    <div class="my-2"><span class="font-bold">Client name: </span><%=  @order.client_name %>
+    </div>
+    <div class="my-2"><span class="font-bold">Phone: </span><%= @order.client_phone %></div>
 
+    <div class="my-2"><span class="font-bold">Worker: </span>
+      <%= link_to @order.worker.name, worker_path(@order.worker)
+    %></div>
 
     <%= link_to 'Edit this order', edit_order_path(@order), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
