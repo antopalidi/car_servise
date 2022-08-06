@@ -5,9 +5,9 @@
               class: 'mx-0 py-2 px-5 bg-blue-400 text-white inline-block font-medium cursor-pointer' %>
   <%= link_to 'By client name', filtered_orders_path(:client_name),
               class: '"mx-0 py-2 px-5 bg-blue-400 text-white inline-block font-medium cursor-pointer" '%>
-  <%= link_to 'Incomplete', filtered_orders_path(:status_incomplete),
+  <%= link_to 'in progress', filtered_orders_path(:status_incomplete),
               class: 'mx-0 py-2 px-5 bg-blue-400 text-white inline-block font-medium cursor-pointer' %>
-  <%= link_to 'Complete', filtered_orders_path(:status_complete),
+  <%= link_to 'Completed', filtered_orders_path(:status_complete),
               class: 'mx-0 py-2 px-5 bg-blue-400 text-white inline-block font-medium cursor-pointer' %>
   <%= link_to 'Download', orders_path(format: :zip), target: '_blank',
               class: 'rounded-r-lg mx-0 py-2 px-5 bg-yellow-400 text-white inline-block font-medium cursor-pointer' %>
