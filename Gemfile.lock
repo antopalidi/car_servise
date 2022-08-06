@@ -238,7 +238,6 @@ DEPENDENCIES
   stimulus-rails
   tailwindcss-rails
   turbo-rails
-  tzinfo-data
   web-console
   webdrivers
 
