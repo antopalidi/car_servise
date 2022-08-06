@@ -1,8 +1,18 @@
 <%= turbo_frame_tag order do %>
   <div class="table min-w-full">
-    <div><%= link_to order.order_number, order, data: { turbo_frame: '_top' }, class: 'text-blue-900 font-bold' %></div>
-    <div><%= order_status(order) %></div>
-    <div><%= l order.created_at, format: :short %></div>
+    <div class="flex items-center">
+      <% if order.status %>
+        <svg class="h-4 w-4 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="3"
+             stroke-linecap="round"  stroke-linejoin="round">  <circle cx="12" cy="12" r="10" />
+        </svg>
+      <% else %>
+        <svg class="h-4 w-4 text-green-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"
+             stroke-linecap="round"  stroke-linejoin="round" stroke-width="3">  <circle cx="12" cy="12" r="10" />
+        </svg>
+      <% end %>
+      <%= link_to order.order_number, order, data: { turbo_frame: '_top' }, class: 'ml-3 text-blue-900 font-bold' %>
+    </div>
+    <div class="text-xs font-light"><%= l order.created_at, format: :short, class: 'text-gray-500 text-xs font-light' %></div>
     <div><%= link_to order.client_name %></div>
     <div><%= link_to order.client_phone, "tel:#{order.client_phone}", class: 'text-blue-400' %></div>
     <div><%= link_to order.worker.name, worker_path(order.worker), data: { turbo_frame: '_top' } %></div>
