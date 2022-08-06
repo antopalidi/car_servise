@@ -14,9 +14,19 @@ class Order < ApplicationRecord
     jobs.map { |item| item.category.title }.uniq
   end
 
-  def self.search(params)
+  def self.search_client(params)
     params[:query].blank? ? all : where(
       "client_name LIKE ?", "%#{sanitize_sql_like(params[:query])}%"
     )
   end
+
+  def self.search_by_worker(search)
+    where("worker_id = ?", search)
+  end
+
+  def self.search_by_category(search)
+    category = Category.where("id = ?", search)
+    category[0].jobs.map { |s| return s.orders }
+  end
+
 end

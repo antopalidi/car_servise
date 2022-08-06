@@ -5,7 +5,14 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.search(params)
+    if params[:order] and params[:order][:worker_id]
+      @orders = Order.search_by_worker(params[:order][:worker_id])
+    elsif params[:order] and params[:order][:category_id]
+      @orders = Order.search_by_category(params[:order][:category_id])
+
+    else
+      @orders = Order.search_client(params)
+    end
 
     case params[:filter]
     when 'client_name'
@@ -19,6 +26,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/1 or /orders/1.json
   def show
+    @worker = Worker.find_by(id: @order.worker_id)
+    @jobs = @order.jobs
   end
 
   # GET /orders/new
