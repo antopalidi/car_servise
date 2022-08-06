@@ -4,8 +4,13 @@
     <div class="mr-12">
       <div class="">
         <%= form.label :order_number, class: 'text-xs' %>
-        <%= form.text_field :order_number, readonly: true, value: order_num,
-                            class: "block rounded-md border border-gray-200 outline-none px-3 py-2  w-full" %>
+        <% if order.order_number %>
+          <%= form.text_field :order_number, readonly: true, value: order.order_number,
+                              class: "block rounded-md border border-gray-200 outline-none px-3 py-2  w-full" %>
+        <% else %>
+          <%= form.text_field :order_number, readonly: true, value: order_num,
+                              class: "block rounded-md border border-gray-200 outline-none px-3 py-2  w-full" %>
+        <% end %>
       </div>
 
       <%= form.label :worker, class: 'text-xs' %>
