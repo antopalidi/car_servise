@@ -3,7 +3,7 @@ class WorkersController < ApplicationController
 
   # GET /workers or /workers.json
   def index
-    @workers = Worker.all
+    @workers = Worker.includes([:orders]).all
   end
 
   # GET /workers/1 or /workers/1.json

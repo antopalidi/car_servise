@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
         elsif params[:order] and params[:order][:category_id]
           @orders = Order.search_by_category(params[:order][:category_id])
         else
-          @orders = Order.search_client(params)
+          @orders = Order.includes([:worker, :orders_jobs, :jobs]).search_client(params)
         end
 
         case params[:filter]
