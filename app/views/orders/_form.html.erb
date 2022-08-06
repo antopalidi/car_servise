@@ -42,9 +42,9 @@
     <div>
       <%= form.label :jobs, class: 'text-xs' %>
       <div class="">
-        <%= form.collection_check_boxes(:job_ids, Job.all, :id, :title) do |job| %>
-          <div class="flex">
-            <%= job.label class: "checkbox text-s" do %>
+        <%= form.collection_check_boxes(:job_ids, Job.order(title: :asc), :id, :title) do |job| %>
+          <div class="flex my-1">
+            <%= job.label class: "checkbox text-xs" do %>
               <%= job.check_box class: " me-2" %>
               <%= job.text %>
             <% end %>

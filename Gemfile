@@ -25,6 +25,7 @@ end
 
 group :development do
   gem "web-console"
+  gem 'bullet', group: 'development'
 end
 
 group :test do
