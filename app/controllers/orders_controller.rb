@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
       @orders = Order.search_by_worker(params[:order][:worker_id])
     elsif params[:order] and params[:order][:category_id]
       @orders = Order.search_by_category(params[:order][:category_id])
-
     else
       @orders = Order.search_client(params)
     end
@@ -21,6 +20,10 @@ class OrdersController < ApplicationController
       @orders = Order.filter_by_desc
     when 'asc'
       @orders = Order.filter_by_asc
+    when "status_incomplete"
+      @orders = Order.filter_by_status_incomplete
+    when "status_complete"
+      @orders = Order.filter_by_status_complete
     end
   end
 
@@ -101,6 +104,6 @@ class OrdersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def order_params
-    params.require(:order).permit(:client_name, :order_number, :client_phone, :worker_id, job_ids: [])
+    params.require(:order).permit(:status, :client_name, :order_number, :client_phone, :worker_id, job_ids: [])
   end
 end

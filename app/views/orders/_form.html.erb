@@ -18,6 +18,13 @@
                                  { prompt: 'Select' },
                                  { class: 'block shadow rounded-md border border-gray-200 outline-none px-3 py-2
     w-full' }) %>
+      <div class="mt-3">
+        <%= form.radio_button(:status, true) %>
+        <%= form.label(:status, "Incomplete", value: true, class: 'mr-6') %>
+
+        <%= form.radio_button(:status, false) %>
+        <%= form.label(:status, "Complete", value: false) %>
+      </div>
     </div>
     <div class="input-block mr-12">
       <div class="">

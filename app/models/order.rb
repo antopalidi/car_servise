@@ -9,6 +9,8 @@ class Order < ApplicationRecord
   scope :filter_by_client_name, -> { order(client_name: :asc) }
   scope :filter_by_desc, -> { order(created_at: :desc) }
   scope :filter_by_asc, -> { order(created_at: :asc) }
+  scope :filter_by_status_incomplete, -> { where(status: true) }
+  scope :filter_by_status_complete, -> { where(status: false) }
 
   def unique_categories(jobs)
     jobs.map { |item| item.category.title }.uniq
