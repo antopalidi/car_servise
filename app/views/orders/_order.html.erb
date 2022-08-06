@@ -14,7 +14,9 @@
     </div>
     <div class="text-xs font-light"><%= l order.created_at, format: :short, class: 'text-gray-500 text-xs font-light' %></div>
     <div><%= link_to order.client_name %></div>
-    <div><%= link_to order.client_phone, "tel:#{order.client_phone}", class: 'text-blue-400' %></div>
+    <div>
+      <%= link_to order.client_phone, "tel:#{order.client_phone}", class: 'text-blue-400' %>
+    </div>
     <div><%= link_to order.worker.name, worker_path(order.worker), data: { turbo_frame: '_top' } %></div>
     <div>
       <ul>

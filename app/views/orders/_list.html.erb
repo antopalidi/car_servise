@@ -5,6 +5,10 @@
               class: "mx-0 py-2 px-5 bg-blue-400 text-white inline-block font-medium cursor-pointer" %>
   <%= link_to 'By client name', filtered_orders_path(:client_name),
               class: "mx-0 py-2 px-5 bg-blue-400 text-white inline-block font-medium cursor-pointer" %>
+  <%= link_to "Incomplete", filtered_orders_path(:status_incomplete),
+              class: "mx-0 py-2 px-5 bg-blue-400 text-white inline-block font-medium cursor-pointer" %>
+  <%= link_to "Complete", filtered_orders_path(:status_complete),
+              class: "mx-0 py-2 px-5 bg-blue-400 text-white inline-block font-medium cursor-pointer" %>
   <div class="my-3 mr-4">
     <%= form_tag(orders_path, :method => 'get', class: 'flex') do %>
       <%= collection_select :order, :worker_id, Worker.all, :id, :name,
@@ -28,7 +32,7 @@
     </div>
   </div>
   <div class="table-header table font-bold text-base min-w-full">
-    <div>Order Number</div>
+    <div>Order</div>
     <div>Datetime</div>
     <div>Client name</div>
     <div>Phone</div>
