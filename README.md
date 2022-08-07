@@ -5,7 +5,7 @@ Rails `7.0.3`
 Ruby `3.1.2`
 
 ### Demo
-[car-service.herokuapp.com](https://car-service.herokuapp.com/)
+[car-service-rails.herokuapp.com](https://car-service.herokuapp.com/)
 
 ### Implemented features:
 
